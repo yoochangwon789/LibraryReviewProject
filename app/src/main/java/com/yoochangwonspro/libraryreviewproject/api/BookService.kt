@@ -1,6 +1,7 @@
 package com.yoochangwonspro.libraryreviewproject.api
 
 import com.yoochangwonspro.libraryreviewproject.model.BestSellerDto
+import com.yoochangwonspro.libraryreviewproject.model.SearchBookDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,7 +12,7 @@ interface BookService {
     fun getBooksByName(
         @Query("key") apiKey: String,
         @Query("query") keyword: String
-    ) : Call<>
+    ) : Call<SearchBookDto>
 
     @GET("/api/bestSeller.api?output=json&categoryId=100")
     fun getBestSellerBooks(
