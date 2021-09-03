@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                     response: Response<BestSellerDto>,
                 ) {
                     if (response.isSuccessful.not()) {
+                        Log.e(TAG, "NOT!! SUCCESS")
                         return
                     }
 
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onFailure(call: Call<BestSellerDto>, t: Throwable) {
                     // 실패 처리
+                    Log.e(TAG, t.toString())
                 }
 
             })
