@@ -3,6 +3,10 @@ package com.yoochangwonspro.libraryreviewproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.yoochangwonspro.libraryreviewproject.api.BookService
+import com.yoochangwonspro.libraryreviewproject.model.BestSellerDto
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,6 +22,19 @@ class MainActivity : AppCompatActivity() {
 
         val bookService = retrofit.create(BookService::class.java)
 
+        bookService.getBestSellerBooks("55A42C8F000E61D277E7769CB289A60A73C0AAFFDBBDAF14BB610670D3B666A3")
+            .enqueue(object : Callback<BestSellerDto> {
+                override fun onResponse(
+                    call: Call<BestSellerDto>,
+                    response: Response<BestSellerDto>,
+                ) {
+                    TODO("Not yet implemented")
+                }
 
+                override fun onFailure(call: Call<BestSellerDto>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
     }
 }
