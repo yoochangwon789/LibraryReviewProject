@@ -2,6 +2,7 @@ package com.yoochangwonspro.libraryreviewproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.yoochangwonspro.libraryreviewproject.api.BookService
 import com.yoochangwonspro.libraryreviewproject.model.BestSellerDto
 import retrofit2.Call
@@ -28,13 +29,27 @@ class MainActivity : AppCompatActivity() {
                     call: Call<BestSellerDto>,
                     response: Response<BestSellerDto>,
                 ) {
-                    TODO("Not yet implemented")
+                    if (response.isSuccessful.not()) {
+                        return
+                    }
+
+                    response.body()?.let {
+                        Log.d(TAG, it.toString())
+
+                        it.books.forEach { book ->
+                            Log.d(TAG, book.toString())
+                        }
+                    }
                 }
 
                 override fun onFailure(call: Call<BestSellerDto>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    // 실패 처리
                 }
 
             })
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
     }
 }
