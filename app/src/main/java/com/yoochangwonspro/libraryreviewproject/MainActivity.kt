@@ -17,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: BookAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +51,8 @@ class MainActivity : AppCompatActivity() {
                             Log.d(TAG, book.toString())
                         }
                     }
+
+
                 }
 
                 override fun onFailure(call: Call<BestSellerDto>, t: Throwable) {
@@ -60,8 +63,8 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    fun initBookRecyclerView() {
-        val adapter = BookAdapter()
+    private fun initBookRecyclerView() {
+        adapter = BookAdapter()
 
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.bookRecyclerView.adapter = adapter
