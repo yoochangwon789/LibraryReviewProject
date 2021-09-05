@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity() {
                         it.books.forEach { book ->
                             Log.d(TAG, book.toString())
                         }
+
+                        adapter.submitList(it.books)
                     }
-
-
                 }
 
                 override fun onFailure(call: Call<BestSellerDto>, t: Throwable) {
