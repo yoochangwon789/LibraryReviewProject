@@ -10,13 +10,17 @@ class BookAdapter : ListAdapter<Book, BookAdapter.BookItemViewHolder>(diffUtil) 
 
     inner class BookItemViewHolder(private val binding: ItemBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+            fun bind(bookModel: Book) {
+                binding.itemTitleTextView.text = bookModel.title
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookItemViewHolder {
-        TODO("Not yet implemented")
+
     }
 
     override fun onBindViewHolder(holder: BookItemViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(currentList[position])
     }
 }
