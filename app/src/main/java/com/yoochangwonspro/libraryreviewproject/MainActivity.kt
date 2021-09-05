@@ -3,6 +3,8 @@ package com.yoochangwonspro.libraryreviewproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.yoochangwonspro.libraryreviewproject.adapter.BookAdapter
 import com.yoochangwonspro.libraryreviewproject.api.BookService
 import com.yoochangwonspro.libraryreviewproject.databinding.ActivityMainBinding
 import com.yoochangwonspro.libraryreviewproject.model.BestSellerDto
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initBookRecyclerView()
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://book.interpark.com")
@@ -54,6 +58,13 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
+    }
+
+    fun initBookRecyclerView() {
+        val adapter = BookAdapter()
+
+        binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.bookRecyclerView.adapter = adapter
     }
 
     companion object {
