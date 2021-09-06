@@ -15,6 +15,7 @@ class BookAdapter : ListAdapter<Book, BookAdapter.BookItemViewHolder>(diffUtil) 
 
         fun bind(bookModel: Book) {
             binding.itemTitleTextView.text = bookModel.title
+            binding.itemDescriptionTextView.text = bookModel.description
         }
     }
 
