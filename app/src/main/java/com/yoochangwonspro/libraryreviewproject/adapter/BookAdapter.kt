@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.yoochangwonspro.libraryreviewproject.databinding.ItemBookBinding
 import com.yoochangwonspro.libraryreviewproject.model.Book
 
@@ -16,6 +17,12 @@ class BookAdapter : ListAdapter<Book, BookAdapter.BookItemViewHolder>(diffUtil) 
         fun bind(bookModel: Book) {
             binding.itemTitleTextView.text = bookModel.title
             binding.itemDescriptionTextView.text = bookModel.description
+
+            // ImageView 에는 context 를 포함하고 있기 때문에 with 함수에 이미지 아이디를 넣어준다
+            Glide
+                .with(binding.coverImageView)
+                .load(bookModel.coverSmallUrl)
+                .into(binding.coverImageView)
         }
     }
 
