@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initBookRecyclerView()
-
+    
+        // 레드로핏 초기화
         val retrofit = Retrofit.Builder()
             .baseUrl("https://book.interpark.com")
             .addConverterFactory(GsonConverterFactory.create())
