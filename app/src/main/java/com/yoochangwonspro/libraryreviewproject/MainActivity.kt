@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initBookRecyclerView()
+        initHistoryRecyclerView()
 
         db = Room.databaseBuilder(
             applicationContext,
@@ -127,6 +128,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.bookRecyclerView.adapter = adapter
+    }
+
+    private fun initHistoryRecyclerView() {
+        historyAdapter = HistoryAdapter(
+            historyDeleteClickedListener = { deleteSearchKeyword(it) }
+        )
     }
 
     private fun showHistoryView() {
