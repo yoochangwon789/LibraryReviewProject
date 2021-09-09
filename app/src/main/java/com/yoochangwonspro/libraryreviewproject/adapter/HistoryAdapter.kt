@@ -9,20 +9,20 @@ import com.yoochangwonspro.libraryreviewproject.databinding.ItemHistoryBinding
 import com.yoochangwonspro.libraryreviewproject.model.History
 
 
-class HistoryAdapter : ListAdapter<History, HistoryAdapter.HistoryItemViewHolder>(diffUtil) {
+class HistoryAdapter(val historyDeleteClickedListener: (String) -> Unit) :
+    ListAdapter<History, HistoryAdapter.HistoryItemViewHolder>(diffUtil) {
 
     inner class HistoryItemViewHolder(private val binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(historyModel: History) {
-                binding.itemHistoryKeywordTextView.text = historyModel.keyword
-            }
+        fun bind(historyModel: History) {
+            binding.itemHistoryKeywordTextView.text = historyModel.keyword
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryItemViewHolder {
         return HistoryItemViewHolder(
-            ItemHistoryBinding.inflate(LayoutInflater.from(parent.context)
-                , parent, false))
+            ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: HistoryItemViewHolder, position: Int) {
