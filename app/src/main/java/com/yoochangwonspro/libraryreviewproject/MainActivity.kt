@@ -138,10 +138,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun showHistoryView() {
         Thread {
-            val keywords = db.historyDao().getAll().reversed()
-        }
+            db.historyDao().getAll().reversed()
+        }.start()
 
         binding.historyRecyclerView.isVisible = true
+    }
+
+    private fun deleteSearchKeyword(keyword: String) {
+        Thread {
+            db.historyDao().deleteKeyword(keyword)
+            // todo : view 갱신
+        }.start()
     }
 
     private fun hideHistoryView() {
