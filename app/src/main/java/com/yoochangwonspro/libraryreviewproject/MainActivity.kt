@@ -10,6 +10,7 @@ import com.yoochangwonspro.libraryreviewproject.adapter.BookAdapter
 import com.yoochangwonspro.libraryreviewproject.api.BookService
 import com.yoochangwonspro.libraryreviewproject.databinding.ActivityMainBinding
 import com.yoochangwonspro.libraryreviewproject.model.BestSellerDto
+import com.yoochangwonspro.libraryreviewproject.model.SearchBookDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -77,6 +78,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun search(keyword: String) {
+        bookService.getBooksByName(getString(R.string.interparkAPIKey), keyword)
+            .enqueue(object : Callback<SearchBookDto> {
+                override fun onResponse(
+                    call: Call<SearchBookDto>,
+                    response: Response<SearchBookDto>,
+                ) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onFailure(call: Call<SearchBookDto>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
     }
 
     private fun initBookRecyclerView() {
