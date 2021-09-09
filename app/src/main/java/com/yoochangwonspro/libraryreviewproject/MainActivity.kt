@@ -3,6 +3,8 @@ package com.yoochangwonspro.libraryreviewproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.MotionEvent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yoochangwonspro.libraryreviewproject.adapter.BookAdapter
 import com.yoochangwonspro.libraryreviewproject.api.BookService
@@ -62,6 +64,15 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
+
+        // 키보드가 입력이 되었을 시에 이벤트를 받고 활용할 수 있는 함수
+        binding.searchEditText.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == MotionEvent.ACTION_DOWN) {
+                search(binding.searchEditText.text.toString())
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
     }
 
     private fun initBookRecyclerView() {
