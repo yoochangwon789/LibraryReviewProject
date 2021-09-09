@@ -128,6 +128,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showHistoryView() {
+        Thread {
+            val keywords = db.historyDao().getAll().reversed()
+        }
+
         binding.historyRecyclerView.isVisible = true
     }
 
