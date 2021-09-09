@@ -93,6 +93,9 @@ class MainActivity : AppCompatActivity() {
                     call: Call<SearchBookDto>,
                     response: Response<SearchBookDto>,
                 ) {
+
+                    saveSearchKeyword(keyword)
+
                     if (response.isSuccessful.not()) {
                         return
                     }
