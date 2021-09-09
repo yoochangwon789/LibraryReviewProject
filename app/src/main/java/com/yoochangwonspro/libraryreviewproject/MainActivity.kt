@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: BookAdapter
+    private lateinit var bookService: BookService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val bookService = retrofit.create(BookService::class.java)
+        bookService = retrofit.create(BookService::class.java)
 
         bookService.getBestSellerBooks("55A42C8F000E61D277E7769CB289A60A73C0AAFFDBBDAF14BB610670D3B666A3")
             .enqueue(object : Callback<BestSellerDto> {
