@@ -84,11 +84,21 @@ class MainActivity : AppCompatActivity() {
                     call: Call<SearchBookDto>,
                     response: Response<SearchBookDto>,
                 ) {
-                    TODO("Not yet implemented")
+                    if (response.isSuccessful.not()) {
+                        return
+                    }
+
+                    response.body()?.let {
+                        it.books.forEach { book ->
+                            Log.d(TAG, book.toString())
+                        }
+
+                        adapter.submitList(it.books)
+                    }
                 }
 
                 override fun onFailure(call: Call<SearchBookDto>, t: Throwable) {
-                    TODO("Not yet implemented")
+
                 }
 
             })
