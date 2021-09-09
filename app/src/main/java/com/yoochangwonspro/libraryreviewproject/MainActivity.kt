@@ -109,6 +109,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun saveSearchKeyword(keyword: String) {
+
+    }
+
     private fun initBookRecyclerView() {
         adapter = BookAdapter()
 
