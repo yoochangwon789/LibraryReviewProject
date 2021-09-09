@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
                     call: Call<SearchBookDto>,
                     response: Response<SearchBookDto>,
                 ) {
-
+                    hideHistoryView()
                     saveSearchKeyword(keyword)
 
                     if (response.isSuccessful.not()) {
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<SearchBookDto>, t: Throwable) {
-
+                    hideHistoryView()
                 }
 
             })
@@ -134,11 +134,19 @@ class MainActivity : AppCompatActivity() {
         historyAdapter = HistoryAdapter(
             historyDeleteClickedListener = { deleteSearchKeyword(it) }
         )
+
+        binding.historyRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.historyRecyclerView.adapter = historyAdapter
     }
 
     private fun showHistoryView() {
         Thread {
-            db.historyDao().getAll().reversed()
+            val keywords = db.historyDao().getAll().reversed()
+
+            runOnUiThread {
+                binding.historyRecyclerView.isVisible = true
+                historyAdapter.submitList(keywords.orEmpty())
+            }
         }.start()
 
         binding.historyRecyclerView.isVisible = true
@@ -147,7 +155,7 @@ class MainActivity : AppCompatActivity() {
     private fun deleteSearchKeyword(keyword: String) {
         Thread {
             db.historyDao().deleteKeyword(keyword)
-            // todo : view 갱신
+            showHistoryView()
         }.start()
     }
 
