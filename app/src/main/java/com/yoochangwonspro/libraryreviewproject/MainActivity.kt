@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.MotionEvent
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.yoochangwonspro.libraryreviewproject.adapter.BookAdapter
@@ -124,6 +125,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.bookRecyclerView.adapter = adapter
+    }
+
+    private fun showHistoryView() {
+        binding.historyRecyclerView.isVisible = true
+    }
+
+    private fun hideHistoryView() {
+        binding.historyRecyclerView.isVisible = false
     }
 
     companion object {
