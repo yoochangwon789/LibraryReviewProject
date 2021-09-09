@@ -1,5 +1,6 @@
 package com.yoochangwonspro.libraryreviewproject.adapter
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -14,12 +15,14 @@ class HistoryAdapter : ListAdapter<History, HistoryAdapter.HistoryItemViewHolder
         RecyclerView.ViewHolder(binding.root) {
 
             fun bind(historyModel: History) {
-
+                binding.itemHistoryKeywordTextView.text = historyModel.keyword
             }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryItemViewHolder {
-        TODO("Not yet implemented")
+        return HistoryItemViewHolder(
+            ItemHistoryBinding.inflate(LayoutInflater.from(parent.context)
+                , parent, false))
     }
 
     override fun onBindViewHolder(holder: HistoryItemViewHolder, position: Int) {
@@ -33,7 +36,7 @@ class HistoryAdapter : ListAdapter<History, HistoryAdapter.HistoryItemViewHolder
             }
 
             override fun areContentsTheSame(oldItem: History, newItem: History): Boolean {
-                return oldItem.uid == newItem.uid
+                return oldItem.keyword == newItem.keyword
             }
         }
     }
