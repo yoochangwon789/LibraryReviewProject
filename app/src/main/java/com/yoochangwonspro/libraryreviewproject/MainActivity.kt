@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.yoochangwonspro.libraryreviewproject.adapter.BookAdapter
+import com.yoochangwonspro.libraryreviewproject.adapter.HistoryAdapter
 import com.yoochangwonspro.libraryreviewproject.api.BookService
 import com.yoochangwonspro.libraryreviewproject.databinding.ActivityMainBinding
 import com.yoochangwonspro.libraryreviewproject.model.BestSellerDto
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: BookAdapter
+    private lateinit var historyAdapter: HistoryAdapter
     private lateinit var bookService: BookService
     private lateinit var db: AppDatabase
 
