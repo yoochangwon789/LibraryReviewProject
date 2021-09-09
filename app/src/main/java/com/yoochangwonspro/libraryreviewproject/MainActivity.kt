@@ -88,13 +88,9 @@ class MainActivity : AppCompatActivity() {
                         return
                     }
 
-                    response.body()?.let {
-                        it.books.forEach { book ->
-                            Log.d(TAG, book.toString())
-                        }
-
-                        adapter.submitList(it.books)
-                    }
+                    // body 가 null 이 아닐 때 books 를 return 하거나 또는 서치가 되지 않으면 빈 값을 주는
+                    // 형식으로 코드 변경
+                    adapter.submitList(response.body()?.books.orEmpty())
                 }
 
                 override fun onFailure(call: Call<SearchBookDto>, t: Throwable) {
