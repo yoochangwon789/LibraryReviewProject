@@ -1,5 +1,6 @@
 package com.yoochangwonspro.libraryreviewproject
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         initBookRecyclerView()
         initHistoryRecyclerView()
+        initSearchEditText()
 
         db = Room.databaseBuilder(
             applicationContext,
@@ -79,15 +81,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
-
-        // 키보드가 입력이 되었을 시에 이벤트를 받고 활용할 수 있는 함수
-        binding.searchEditText.setOnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == MotionEvent.ACTION_DOWN) {
-                search(binding.searchEditText.text.toString())
-                return@setOnKeyListener true
-            }
-            return@setOnKeyListener false
-        }
     }
 
     private fun search(keyword: String) {
@@ -137,6 +130,25 @@ class MainActivity : AppCompatActivity() {
 
         binding.historyRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.historyRecyclerView.adapter = historyAdapter
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initSearchEditText() {
+        // 키보드가 입력이 되었을 시에 이벤트를 받고 활용할 수 있는 함수
+        binding.searchEditText.setOnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == MotionEvent.ACTION_DOWN) {
+                search(binding.searchEditText.text.toString())
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
+
+        binding.searchEditText.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                showHistoryView()
+            }
+            return@setOnTouchListener false
+        }
     }
 
     private fun showHistoryView() {

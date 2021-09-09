@@ -29,7 +29,7 @@ class HistoryAdapter(val historyDeleteClickedListener: (String) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: HistoryItemViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(currentList[position])
     }
 
     companion object {
