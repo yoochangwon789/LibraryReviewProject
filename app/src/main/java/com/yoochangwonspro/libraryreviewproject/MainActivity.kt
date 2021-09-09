@@ -11,6 +11,7 @@ import com.yoochangwonspro.libraryreviewproject.adapter.BookAdapter
 import com.yoochangwonspro.libraryreviewproject.api.BookService
 import com.yoochangwonspro.libraryreviewproject.databinding.ActivityMainBinding
 import com.yoochangwonspro.libraryreviewproject.model.BestSellerDto
+import com.yoochangwonspro.libraryreviewproject.model.History
 import com.yoochangwonspro.libraryreviewproject.model.SearchBookDto
 import retrofit2.Call
 import retrofit2.Callback
@@ -110,7 +111,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveSearchKeyword(keyword: String) {
-
+        Thread {
+            db.historyDao().insertHistory(History(null, keyword))
+        }.start()
     }
 
     private fun initBookRecyclerView() {
