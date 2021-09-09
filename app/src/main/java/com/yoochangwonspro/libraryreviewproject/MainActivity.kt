@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         bookService = retrofit.create(BookService::class.java)
 
-        bookService.getBestSellerBooks("55A42C8F000E61D277E7769CB289A60A73C0AAFFDBBDAF14BB610670D3B666A3")
+        bookService.getBestSellerBooks(getString(R.string.interparkAPIKey))
             .enqueue(object : Callback<BestSellerDto> {
                 override fun onResponse(
                     call: Call<BestSellerDto>,
@@ -77,7 +77,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun search(keyword: String) {
-
     }
 
     private fun initBookRecyclerView() {
