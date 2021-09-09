@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.MotionEvent
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.yoochangwonspro.libraryreviewproject.adapter.BookAdapter
 import com.yoochangwonspro.libraryreviewproject.api.BookService
 import com.yoochangwonspro.libraryreviewproject.databinding.ActivityMainBinding
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: BookAdapter
     private lateinit var bookService: BookService
+    private lateinit var db: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initBookRecyclerView()
-    
+
+        db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java,
+            "BookSearchDB"
+        ).build()
+
         // 레드로핏 초기화
         val retrofit = Retrofit.Builder()
             .baseUrl("https://book.interpark.com")
