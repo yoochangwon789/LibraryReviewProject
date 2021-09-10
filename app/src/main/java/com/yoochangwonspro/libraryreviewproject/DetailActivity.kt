@@ -33,6 +33,13 @@ class DetailActivity : AppCompatActivity() {
             .load(model?.coverSmallUrl.orEmpty())
             .into(binding.coverImageView)
 
+        Thread {
+            val review = db.reviewDao().getOnReview(model?.id?.toInt() ?: 0)
+            runOnUiThread {
+                binding.reviewEditText.setText(review.review.orEmpty())
+            }
+        }
+
         binding.saveButton.setOnClickListener {
             Thread {
                 db.reviewDao().saveReview(
