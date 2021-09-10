@@ -6,6 +6,7 @@ import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.yoochangwonspro.libraryreviewproject.databinding.ActivityDetailBinding
 import com.yoochangwonspro.libraryreviewproject.model.Book
+import com.yoochangwonspro.libraryreviewproject.model.Review
 
 class DetailActivity : AppCompatActivity() {
 
@@ -34,8 +35,13 @@ class DetailActivity : AppCompatActivity() {
 
         binding.saveButton.setOnClickListener {
             Thread {
-                db.reviewDao().saveReview()
-            }
+                db.reviewDao().saveReview(
+                    Review(
+                        model?.id?.toInt() ?: 0,
+                        binding.reviewEditText.text.toString()
+                    )
+                )
+            }.start()
         }
     }
 }
