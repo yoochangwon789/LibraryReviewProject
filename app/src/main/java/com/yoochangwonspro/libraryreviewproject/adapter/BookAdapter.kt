@@ -9,7 +9,8 @@ import com.bumptech.glide.Glide
 import com.yoochangwonspro.libraryreviewproject.databinding.ItemBookBinding
 import com.yoochangwonspro.libraryreviewproject.model.Book
 
-class BookAdapter : ListAdapter<Book, BookAdapter.BookItemViewHolder>(diffUtil) {
+class BookAdapter(itemClickedListener: (Book) -> Unit) :
+    ListAdapter<Book, BookAdapter.BookItemViewHolder>(diffUtil) {
 
     inner class BookItemViewHolder(private val binding: ItemBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
