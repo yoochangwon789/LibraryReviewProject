@@ -31,5 +31,11 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(binding.coverImageView)
             .load(model?.coverSmallUrl.orEmpty())
             .into(binding.coverImageView)
+
+        binding.saveButton.setOnClickListener {
+            Thread {
+                db.reviewDao().saveReview()
+            }
+        }
     }
 }
