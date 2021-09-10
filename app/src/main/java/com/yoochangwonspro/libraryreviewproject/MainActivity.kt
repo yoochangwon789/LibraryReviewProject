@@ -120,6 +120,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBookRecyclerView() {
         adapter = BookAdapter(itemClickedListener = {
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("bookModel", it)
+            startActivity(intent)
         })
 
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
