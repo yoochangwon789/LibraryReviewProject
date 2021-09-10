@@ -100,6 +100,8 @@ class MainActivity : AppCompatActivity() {
                     // body 가 null 이 아닐 때 books 를 return 하거나 또는 서치가 되지 않으면 빈 값을 주는
                     // 형식으로 코드 변경
                     adapter.submitList(response.body()?.books.orEmpty())
+                    binding.historyHideButton.isVisible = false
+                    keyBodeHide()
                 }
 
                 override fun onFailure(call: Call<SearchBookDto>, t: Throwable) {
@@ -116,14 +118,17 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
-    private fun initHistoryHideBackButton() {
-
+    private fun keyBodeHide() {
         val manager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        manager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+    }
+
+    private fun initHistoryHideBackButton() {
 
         binding.historyHideButton.setOnClickListener {
             hideHistoryView()
             binding.historyHideButton.isVisible = false
-            manager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+            keyBodeHide()
         }
     }
 
