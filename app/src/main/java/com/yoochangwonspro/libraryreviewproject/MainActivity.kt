@@ -120,7 +120,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBookRecyclerView() {
         adapter = BookAdapter(itemClickedListener = {
-
         })
 
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
