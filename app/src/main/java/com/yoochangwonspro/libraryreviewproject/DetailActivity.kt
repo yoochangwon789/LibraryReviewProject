@@ -38,7 +38,7 @@ class DetailActivity : AppCompatActivity() {
             runOnUiThread {
                 binding.reviewEditText.setText(review.review.orEmpty())
             }
-        }
+        }.start()
 
         binding.saveButton.setOnClickListener {
             Thread {
