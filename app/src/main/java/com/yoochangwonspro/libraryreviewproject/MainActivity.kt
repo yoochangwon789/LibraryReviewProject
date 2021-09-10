@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         initBookRecyclerView()
         initHistoryRecyclerView()
         initSearchEditText()
+        initHistoryHideBackButton()
 
         db = getAppDatabase(this)
 
@@ -114,6 +115,13 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
+    private fun initHistoryHideBackButton() {
+        binding.historyHideButton.setOnClickListener {
+            hideHistoryView()
+            binding.historyHideButton.isVisible = false
+        }
+    }
+
     private fun initBookRecyclerView() {
         adapter = BookAdapter(itemClickedListener = {
             val intent = Intent(this, DetailActivity::class.java)
@@ -148,6 +156,7 @@ class MainActivity : AppCompatActivity() {
         binding.searchEditText.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 showHistoryView()
+                binding.historyHideButton.isVisible = true
             }
             return@setOnTouchListener false
         }
