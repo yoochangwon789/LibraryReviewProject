@@ -3,7 +3,9 @@ package com.yoochangwonspro.libraryreviewproject
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
+import com.bumptech.glide.Glide
 import com.yoochangwonspro.libraryreviewproject.databinding.ActivityDetailBinding
+import com.yoochangwonspro.libraryreviewproject.model.Book
 
 class DetailActivity : AppCompatActivity() {
 
@@ -20,5 +22,14 @@ class DetailActivity : AppCompatActivity() {
             AppDatabase::class.java,
             "BookSearchDB"
         ).build()
+
+        val model = intent.getParcelableExtra<Book>("bookModel")
+
+        binding.titleTextView.text = model?.title.orEmpty()
+        binding.descriptionTextView.text = model?.description.orEmpty()
+
+        Glide.with(binding.coverImageView)
+            .load(model?.coverSmallUrl.orEmpty())
+            .into(binding.coverImageView)
     }
 }
