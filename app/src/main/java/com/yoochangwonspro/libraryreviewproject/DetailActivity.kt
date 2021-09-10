@@ -36,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
         Thread {
             val review = db.reviewDao().getOnReview(model?.id?.toInt() ?: 0)
             runOnUiThread {
-                binding.reviewEditText.setText(review.review.orEmpty())
+                binding.reviewEditText.setText(review?.review.orEmpty())
             }
         }.start()
 

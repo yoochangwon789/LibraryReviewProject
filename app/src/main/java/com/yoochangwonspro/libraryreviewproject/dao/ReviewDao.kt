@@ -10,7 +10,7 @@ import com.yoochangwonspro.libraryreviewproject.model.Review
 interface ReviewDao {
 
     @Query("SELECT * FROM review WHERE id == :id")
-    fun getOnReview(id: Int): Review
+    fun getOnReview(id: Int): Review?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveReview(review: Review)
