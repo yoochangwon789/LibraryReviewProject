@@ -1,6 +1,7 @@
 package com.yoochangwonspro.libraryreviewproject
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import com.yoochangwonspro.libraryreviewproject.adapter.HistoryAdapter
 import com.yoochangwonspro.libraryreviewproject.api.BookService
 import com.yoochangwonspro.libraryreviewproject.databinding.ActivityMainBinding
 import com.yoochangwonspro.libraryreviewproject.model.BestSellerDto
+import com.yoochangwonspro.libraryreviewproject.model.Book
 import com.yoochangwonspro.libraryreviewproject.model.History
 import com.yoochangwonspro.libraryreviewproject.model.SearchBookDto
 import retrofit2.Call
@@ -117,7 +119,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initBookRecyclerView() {
-        adapter = BookAdapter()
+        adapter = BookAdapter(itemClickedListener = {
+
+        })
 
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.bookRecyclerView.adapter = adapter

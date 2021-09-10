@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.yoochangwonspro.libraryreviewproject.databinding.ItemBookBinding
 import com.yoochangwonspro.libraryreviewproject.model.Book
 
-class BookAdapter(itemClickedListener: (Book) -> Unit) :
+class BookAdapter(private val itemClickedListener: (Book) -> Unit) :
     ListAdapter<Book, BookAdapter.BookItemViewHolder>(diffUtil) {
 
     inner class BookItemViewHolder(private val binding: ItemBookBinding) :
@@ -18,6 +18,10 @@ class BookAdapter(itemClickedListener: (Book) -> Unit) :
         fun bind(bookModel: Book) {
             binding.itemTitleTextView.text = bookModel.title
             binding.itemDescriptionTextView.text = bookModel.description
+
+            binding.root.setOnClickListener {
+                itemClickedListener(bookModel)
+            }
 
             // ImageView 에는 context 를 포함하고 있기 때문에 with 함수에 이미지 아이디를 넣어준다
             Glide
