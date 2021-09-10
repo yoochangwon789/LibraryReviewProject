@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
@@ -116,9 +117,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initHistoryHideBackButton() {
+
+        val manager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+
         binding.historyHideButton.setOnClickListener {
             hideHistoryView()
             binding.historyHideButton.isVisible = false
+            manager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         }
     }
 
