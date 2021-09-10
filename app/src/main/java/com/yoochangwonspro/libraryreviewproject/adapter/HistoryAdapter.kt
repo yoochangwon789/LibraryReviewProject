@@ -9,8 +9,9 @@ import com.yoochangwonspro.libraryreviewproject.databinding.ItemHistoryBinding
 import com.yoochangwonspro.libraryreviewproject.model.History
 
 
-class HistoryAdapter(val historyDeleteClickedListener: (String) -> Unit) :
-    ListAdapter<History, HistoryAdapter.HistoryItemViewHolder>(diffUtil) {
+class HistoryAdapter(
+    val historyDeleteClickedListener: (String) -> Unit,
+) : ListAdapter<History, HistoryAdapter.HistoryItemViewHolder>(diffUtil) {
 
     inner class HistoryItemViewHolder(private val binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
