@@ -14,8 +14,8 @@
         android:background="@color/white"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@id/homeButton"
-        app:layout_constraintEnd_toEndOf="@id/homeButton"/>
+        app:layout_constraintEnd_toStartOf="@id/searchEditText"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageButton
         android:id="@+id/homeButton"
@@ -34,9 +34,9 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:lines="1"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="45dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/homeButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView

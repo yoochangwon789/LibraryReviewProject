@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         initHistoryRecyclerView()
         initSearchEditText()
         initHistoryHideBackButton()
+        initHomeButton()
 
         db = getAppDatabase(this)
 
