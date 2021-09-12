@@ -11,6 +11,7 @@ import com.yoochangwonspro.libraryreviewproject.model.History
 
 class HistoryAdapter(
     val historyDeleteClickedListener: (String) -> Unit,
+    val historyItemClickedListener: (String) -> Unit
 ) : ListAdapter<History, HistoryAdapter.HistoryItemViewHolder>(diffUtil) {
 
     inner class HistoryItemViewHolder(private val binding: ItemHistoryBinding) :
