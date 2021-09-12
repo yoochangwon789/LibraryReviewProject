@@ -155,7 +155,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun historyItemClicked(keyword: String) {
+        bookService.getBooksByName(getString(R.string.interparkAPIKey), keyword)
+            .enqueue(object : Callback<SearchBookDto> {
+                override fun onResponse(
+                    call: Call<SearchBookDto>,
+                    response: Response<SearchBookDto>,
+                ) {
+                    hideHistoryView()
 
+                    if (response.isSuccessful.not()) {
+                        return
+                    }
+
+                    adapter.submitList(response.body()?.books.orEmpty())
+                    binding.historyHideButton.isVisible = false
+                    keyBodeHide()
+                }
+
+                override fun onFailure(call: Call<SearchBookDto>, t: Throwable) {
+                    hideHistoryView()
+                }
+            })
     }
 
     @SuppressLint("ClickableViewAccessibility")
