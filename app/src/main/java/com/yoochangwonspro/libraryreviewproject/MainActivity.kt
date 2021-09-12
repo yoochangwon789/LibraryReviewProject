@@ -128,6 +128,12 @@ class MainActivity : AppCompatActivity() {
             InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
+    private fun initHomeButton() {
+        binding.homeButton.setOnClickListener {
+            getBestSellerBooks()
+        }
+    }
+
     private fun initHistoryHideBackButton() {
 
         binding.historyHideButton.setOnClickListener {
@@ -197,6 +203,7 @@ class MainActivity : AppCompatActivity() {
             if (event.action == MotionEvent.ACTION_DOWN) {
                 showHistoryView()
                 binding.historyHideButton.isVisible = true
+                binding.homeButton.isVisible = false
             }
             return@setOnTouchListener false
         }
