@@ -135,6 +135,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initHomeShowView() {
+        binding.homeButton.isVisible = true
+    }
+
     private fun initHistoryHideBackButton() {
 
         binding.historyHideButton.setOnClickListener {
