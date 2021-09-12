@@ -22,6 +22,9 @@ class HistoryAdapter(
             binding.itemHistoryKeywordDeleteButton.setOnClickListener {
                 historyDeleteClickedListener(historyModel.keyword.orEmpty())
             }
+            binding.root.setOnClickListener {
+                historyItemClickedListener(historyModel.keyword.orEmpty())
+            }
         }
     }
 
