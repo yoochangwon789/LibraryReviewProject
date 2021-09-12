@@ -120,7 +120,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun keyBodeHide() {
         val manager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        manager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        manager.hideSoftInputFromWindow(currentFocus?.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
     private fun initHistoryHideBackButton() {
@@ -145,11 +146,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun initHistoryRecyclerView() {
         historyAdapter = HistoryAdapter(
-            historyDeleteClickedListener = { deleteSearchKeyword(it) }
+            historyDeleteClickedListener = { deleteSearchKeyword(it) },
+            historyItemClickedListener = { historyItemClicked(it) }
         )
 
         binding.historyRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.historyRecyclerView.adapter = historyAdapter
+    }
+
+    private fun historyItemClicked(keyword: String) {
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
