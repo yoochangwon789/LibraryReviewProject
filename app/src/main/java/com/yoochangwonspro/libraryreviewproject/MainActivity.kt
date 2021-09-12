@@ -53,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         bookService = retrofit.create(BookService::class.java)
 
+        getBestSellerBooks()
+    }
+
+    private fun getBestSellerBooks() {
         bookService.getBestSellerBooks(getString(R.string.interparkAPIKey))
             .enqueue(object : Callback<BestSellerDto> {
                 override fun onResponse(
