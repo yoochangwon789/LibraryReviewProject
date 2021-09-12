@@ -145,6 +145,7 @@ class MainActivity : AppCompatActivity() {
             hideHistoryView()
             binding.historyHideButton.isVisible = false
             keyBodeHide()
+            initHomeShowView()
         }
     }
 
@@ -191,6 +192,7 @@ class MainActivity : AppCompatActivity() {
                     hideHistoryView()
                 }
             })
+        initHomeShowView()
     }
 
     @SuppressLint("ClickableViewAccessibility")
