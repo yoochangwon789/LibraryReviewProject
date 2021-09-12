@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity() {
                     adapter.submitList(response.body()?.books.orEmpty())
                     binding.historyHideButton.isVisible = false
                     keyBodeHide()
+                    initHomeShowView()
                 }
 
                 override fun onFailure(call: Call<SearchBookDto>, t: Throwable) {
