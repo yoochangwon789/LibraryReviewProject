@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     // body 가 null 이 아닐 때 books 를 return 하거나 또는 서치가 되지 않으면 빈 값을 주는
                     // 형식으로 코드 변경
                     adapter.submitList(response.body()?.books.orEmpty())
-                    binding.historyHideButton.isVisible = false
+                    binding.historyHideBackButton.isVisible = false
                     keyBodeHide()
                     initHomeShowView()
                 }
@@ -142,9 +142,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initHistoryHideBackButton() {
 
-        binding.historyHideButton.setOnClickListener {
+        binding.historyHideBackButton.setOnClickListener {
             hideHistoryView()
-            binding.historyHideButton.isVisible = false
+            binding.historyHideBackButton.isVisible = false
             keyBodeHide()
             initHomeShowView()
         }
@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     adapter.submitList(response.body()?.books.orEmpty())
-                    binding.historyHideButton.isVisible = false
+                    binding.historyHideBackButton.isVisible = false
                     keyBodeHide()
                 }
 
@@ -210,7 +210,7 @@ class MainActivity : AppCompatActivity() {
         binding.searchEditText.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 showHistoryView()
-                binding.historyHideButton.isVisible = true
+                binding.historyHideBackButton.isVisible = true
                 binding.homeButton.isVisible = false
             }
             return@setOnTouchListener false
