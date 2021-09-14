@@ -150,6 +150,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun historyHideBackButton() {
+        binding.historyHideBackButton.isVisible = false
+    }
+
     private fun initBookRecyclerView() {
         adapter = BookAdapter(itemClickedListener = {
             val intent = Intent(this, DetailActivity::class.java)
