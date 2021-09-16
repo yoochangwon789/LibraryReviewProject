@@ -65,17 +65,10 @@ class MainActivity : AppCompatActivity() {
                     response: Response<BestSellerDto>,
                 ) {
                     if (response.isSuccessful.not()) {
-                        Log.e(TAG, "NOT!! SUCCESS")
                         return
                     }
 
                     response.body()?.let {
-                        Log.d(TAG, it.toString())
-
-                        it.books.forEach { book ->
-                            Log.d(TAG, book.toString())
-                        }
-
                         adapter.submitList(it.books)
                     }
                 }
