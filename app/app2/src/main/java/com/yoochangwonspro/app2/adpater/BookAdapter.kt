@@ -7,11 +7,11 @@ import com.bumptech.glide.Glide
 import com.yoochangwonspro.app2.databinding.BookItemBinding
 import com.yoochangwonspro.app2.model.Book
 
-class BookAdapter(
-    private val itemClickListener: (Book) -> Unit
-) : RecyclerView.Adapter<BookAdapter.ViewHolder>() {
+class BookAdapter: RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 
     private var books: List<Book> = listOf()
+
+    private lateinit var itemClickListener: (Book) -> Unit
 
     inner class ViewHolder(private val binding: BookItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -39,10 +39,14 @@ class BookAdapter(
         holder.bind(books[position])
     }
 
+    override fun getItemCount(): Int = books.size
+
     fun setData(books: List<Book>) {
         this.books = books
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = books.size
+    fun itemClickListener(itemClickListener: (Book) -> Unit) {
+        this.itemClickListener = itemClickListener
+    }
 }

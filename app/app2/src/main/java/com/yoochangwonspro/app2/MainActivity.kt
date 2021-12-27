@@ -1,5 +1,6 @@
 package com.yoochangwonspro.app2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -87,5 +88,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                 }
             }
         }
+    }
+
+    private fun detailClickListener(book: Book) {
+        startActivity(Intent(this, DetailActivity::class.java).apply {
+            putExtra("book", book)
+        })
     }
 }
