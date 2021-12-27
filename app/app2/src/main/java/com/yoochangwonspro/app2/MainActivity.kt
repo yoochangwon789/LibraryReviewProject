@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                     if (response.isSuccessful) {
                         body?.let {
                             Log.e("RESPONSE", it.title)
+
+                            it.books.forEach { book ->
+                                Log.e("books", "$book")
+                            }
                         }
                     } else {
                         Log.e("Failure2", "Failure2")
