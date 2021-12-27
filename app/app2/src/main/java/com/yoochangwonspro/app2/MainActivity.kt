@@ -3,8 +3,11 @@ package com.yoochangwonspro.app2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.yoochangwonspro.app2.adpater.BookAdapter
 import com.yoochangwonspro.app2.databinding.ActivityMainBinding
 import com.yoochangwonspro.app2.dto.BestSellerDto
+import com.yoochangwonspro.app2.model.Book
 import com.yoochangwonspro.app2.response.MyKey
 import com.yoochangwonspro.app2.utillity.RetrofitUtil
 import kotlinx.coroutines.*
@@ -22,6 +25,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
+    private lateinit var adapter: BookAdapter
+
+    private var books: List<Book> = listOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,37 +37,31 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         launch(coroutineContext) {
             loadBestSeller()
         }
+
+        initAdapter()
+        initView()
+    }
+
+    private fun initAdapter() {
+        adapter = BookAdapter()
+    }
+
+    private fun initView() {
+        binding.bookRecyclerView.adapter = adapter
+        binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private suspend fun loadBestSeller() = withContext(Dispatchers.IO) {
-        RetrofitUtil.bookService.getBestSeller(MyKey.MY_KEY).enqueue(
-            object : Callback<BestSellerDto> {
-                override fun onResponse(
-                    call: Call<BestSellerDto>,
-                    response: Response<BestSellerDto>,
-                ) {
-                    val body = response.body()
+        val response = RetrofitUtil.bookService.getBestSeller(MyKey.MY_KEY)
 
-                    if (response.isSuccessful) {
-                        body?.let {
-                            Log.e("RESPONSE", it.title)
+        if (response.isSuccessful) {
+            val body = response.body()
 
-                            it.books.forEach { book ->
-                                Log.e("books", book.title)
-                            }
-                        }
-                    } else {
-                        Log.e("Failure2", "Failure2")
-                    }
+            withContext(Dispatchers.Main) {
+                body?.let {
+                    adapter.setData(it.books)
                 }
-
-                override fun onFailure(call: Call<BestSellerDto>, t: Throwable) {
-                    Log.e("Failure", "Failure")
-                }
-
             }
-        )
-
+        }
     }
-
 }
