@@ -37,16 +37,22 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         }
 
         initAdapter()
-        initView()
+        initViews()
     }
 
     private fun initAdapter() {
         adapter = BookAdapter()
     }
 
-    private fun initView() {
+    private fun initViews() {
         binding.bookRecyclerView.adapter = adapter
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        binding.searchButton.setOnClickListener {
+            launch(coroutineContext) {
+                loadSearchBook()
+            }
+        }
     }
 
     private suspend fun loadBestSeller() = withContext(Dispatchers.IO) {
@@ -58,6 +64,26 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             withContext(Dispatchers.Main) {
                 body?.let {
                     adapter.setData(it.books)
+                }
+            }
+        }
+    }
+
+    private fun loadSearchBook() = with(binding) {
+        val bookName = searchKeywordEditText.text.toString()
+
+        launch(coroutineContext) {
+            withContext(Dispatchers.IO) {
+                val response = RetrofitUtil.bookService.getSearchBook(MyKey.MY_KEY, bookName)
+
+                if (response.isSuccessful) {
+                    val body = response.body()
+
+                    withContext(Dispatchers.Main) {
+                        body?.let {
+                            adapter.setData(it.books)
+                        }
+                    }
                 }
             }
         }
