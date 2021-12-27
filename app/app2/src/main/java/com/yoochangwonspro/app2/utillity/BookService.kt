@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface BookService {
 
     @GET("bestSeller.api?output=json/categoryId=100")
-    fun getBestSeller(
+    suspend fun getBestSeller(
         @Query("key") key: String
     ): Call<BestSellerDto>
 }
