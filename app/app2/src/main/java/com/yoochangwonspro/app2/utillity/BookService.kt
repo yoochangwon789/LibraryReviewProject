@@ -12,4 +12,10 @@ interface BookService {
     suspend fun getBestSeller(
         @Query("key") key: String
     ): Response<BestSellerDto>
+
+    @GET("/api/search.api?output=json")
+    suspend fun getSearchBook(
+        @Query("key") key: String,
+        @Query("query") bookName: String
+    ): Response<BestSellerDto>
 }
