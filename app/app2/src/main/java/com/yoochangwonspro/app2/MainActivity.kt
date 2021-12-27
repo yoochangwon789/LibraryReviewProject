@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
     private fun detailClickListener(book: Book) {
         startActivity(Intent(this, DetailActivity::class.java).apply {
-            putExtra("book", book)
+            putExtra("bookModel", book)
         })
     }
 }
