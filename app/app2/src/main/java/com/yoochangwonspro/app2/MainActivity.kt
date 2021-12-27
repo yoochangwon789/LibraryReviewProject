@@ -65,6 +65,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             withContext(Dispatchers.Main) {
                 body?.let {
                     adapter.setData(it.books)
+                    adapter.itemClickListener { book ->
+                        detailClickListener(book)
+                    }
                 }
             }
         }
@@ -83,6 +86,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                     withContext(Dispatchers.Main) {
                         body?.let {
                             adapter.setData(it.books)
+                            adapter.itemClickListener { book ->
+                                detailClickListener(book)
+                            }
                         }
                     }
                 }
