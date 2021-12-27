@@ -4,5 +4,6 @@ import retrofit2.http.GET
 
 interface BookService {
 
-    @GET("")
+    @GET("bestSeller.api?output=json")
+    fun getBestSeller()
 }
