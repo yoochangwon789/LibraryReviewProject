@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                             Log.e("RESPONSE", it.title)
 
                             it.books.forEach { book ->
-                                Log.e("books", "$book")
+                                Log.e("books", book.title)
                             }
                         }
                     } else {
