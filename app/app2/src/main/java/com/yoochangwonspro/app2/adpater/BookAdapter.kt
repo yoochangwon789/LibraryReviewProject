@@ -7,7 +7,9 @@ import com.bumptech.glide.Glide
 import com.yoochangwonspro.app2.databinding.BookItemBinding
 import com.yoochangwonspro.app2.model.Book
 
-class BookAdapter() : RecyclerView.Adapter<BookAdapter.ViewHolder>() {
+class BookAdapter(
+    private val itemClickListener: (Book) -> Unit
+) : RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 
     private var books: List<Book> = listOf()
 
@@ -20,6 +22,10 @@ class BookAdapter() : RecyclerView.Adapter<BookAdapter.ViewHolder>() {
             Glide.with(binding.coverImageView)
                 .load(book.coverSmallUrl)
                 .into(binding.coverImageView)
+
+            binding.root.setOnClickListener {
+                itemClickListener(book)
+            }
         }
     }
 
