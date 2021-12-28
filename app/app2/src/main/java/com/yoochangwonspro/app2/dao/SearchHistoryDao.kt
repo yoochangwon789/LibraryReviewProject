@@ -3,16 +3,17 @@ package com.yoochangwonspro.app2.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.yoochangwonspro.app2.model.SearchHistory
 
 @Dao
 interface SearchHistoryDao {
 
-    @Query("SELECT * FROM history")
-    suspend fun getAll(): List<History>
+    @Query("SELECT * FROM searchhistory")
+    suspend fun getAll(): List<SearchHistory>
 
     @Insert
-    suspend fun insertHistory(history: History)
+    suspend fun insertHistory(searchHistory: SearchHistory)
 
-    @Query("SELECT * FROM history WHERE history_name == :historyName")
+    @Query("SELECT * FROM SearchHistory WHERE history_name == :historyName")
     suspend fun deleteHistory(historyName: String)
 }

@@ -8,4 +8,6 @@ import androidx.room.PrimaryKey
 data class SearchHistory(
     @PrimaryKey val uid: Int?,
     @ColumnInfo(name = "history_name") val historyName: String?
-)
+) {
+    constructor() : this(0, "")
+}
