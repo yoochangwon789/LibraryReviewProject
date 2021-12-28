@@ -4,16 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yoochangwonspro.app2.databinding.HistoryItemBinding
-import com.yoochangwonspro.app2.model.History
+import com.yoochangwonspro.app2.model.SearchHistory
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    private var historyList: List<History> = listOf()
+    private var searchHistoryList: List<SearchHistory> = listOf()
 
     inner class ViewHolder(private val binding: HistoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(history: History) {
-            binding.searchHistoryTextView.text = history.historyName
+        fun bind(searchHistory: SearchHistory) {
+            binding.searchHistoryTextView.text = searchHistory.historyName
         }
     }
 
@@ -24,13 +24,13 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(historyList[position])
+        holder.bind(searchHistoryList[position])
     }
 
-    override fun getItemCount(): Int = historyList.size
+    override fun getItemCount(): Int = searchHistoryList.size
 
-    fun setData(historyList: List<History>) {
-        this.historyList = historyList
+    fun setData(searchHistoryList: List<SearchHistory>) {
+        this.searchHistoryList = searchHistoryList
         notifyDataSetChanged()
     }
 }

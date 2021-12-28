@@ -3,10 +3,9 @@ package com.yoochangwonspro.app2.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.yoochangwonspro.app2.model.History
 
 @Dao
-interface HistoryDao {
+interface SearchHistoryDao {
 
     @Query("SELECT * FROM history")
     suspend fun getAll(): List<History>

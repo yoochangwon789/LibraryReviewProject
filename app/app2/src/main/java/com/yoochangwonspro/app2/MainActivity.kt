@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yoochangwonspro.app2.adpater.BookAdapter
 import com.yoochangwonspro.app2.databinding.ActivityMainBinding
@@ -53,6 +54,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             launch(coroutineContext) {
                 loadSearchBook()
             }
+        }
+
+        binding.searchKeywordEditText.setOnClickListener {
+            binding.homeButton.isGone = true
         }
     }
 

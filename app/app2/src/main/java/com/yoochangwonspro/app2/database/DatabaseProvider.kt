@@ -2,7 +2,6 @@ package com.yoochangwonspro.app2.database
 
 import android.content.Context
 import androidx.room.Room
-import com.yoochangwonspro.app2.model.History
 
 object DatabaseProvider {
 
@@ -10,7 +9,7 @@ object DatabaseProvider {
 
     fun historyProviderDB(applicationContext: Context) = Room.databaseBuilder(
         applicationContext,
-        HistoryDatabase::class.java,
+        SearchHistoryDatabase::class.java,
         DB_NAME
     ).build()
 }
