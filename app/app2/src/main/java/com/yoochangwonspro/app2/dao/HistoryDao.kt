@@ -1,7 +1,6 @@
 package com.yoochangwonspro.app2.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.yoochangwonspro.app2.model.History
