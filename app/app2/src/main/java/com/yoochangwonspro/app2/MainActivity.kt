@@ -8,6 +8,7 @@ import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yoochangwonspro.app2.adpater.BookAdapter
 import com.yoochangwonspro.app2.adpater.HistoryAdapter
+import com.yoochangwonspro.app2.database.DatabaseProvider
 import com.yoochangwonspro.app2.databinding.ActivityMainBinding
 import com.yoochangwonspro.app2.dto.BestSellerDto
 import com.yoochangwonspro.app2.model.Book
@@ -31,6 +32,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     private lateinit var adapter: BookAdapter
 
     private lateinit var historyAdapter: HistoryAdapter
+
+    private val databaseProvider by lazy {
+        DatabaseProvider.historyProviderDB(this).searchHistoryDao()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
