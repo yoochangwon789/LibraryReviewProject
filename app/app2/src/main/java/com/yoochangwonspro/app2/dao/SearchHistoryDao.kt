@@ -8,7 +8,7 @@ import com.yoochangwonspro.app2.model.SearchHistory
 @Dao
 interface SearchHistoryDao {
 
-    @Query("SELECT * FROM searchhistory")
+    @Query("SELECT * FROM SearchHistory")
     suspend fun getAll(): List<SearchHistory>
 
     @Insert

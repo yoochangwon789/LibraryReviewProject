@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "SearchHistory")
 data class SearchHistory(
     @PrimaryKey val uid: Int?,
     @ColumnInfo(name = "history_name") val historyName: String?
