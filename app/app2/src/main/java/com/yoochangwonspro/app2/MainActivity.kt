@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yoochangwonspro.app2.adpater.BookAdapter
+import com.yoochangwonspro.app2.adpater.HistoryAdapter
 import com.yoochangwonspro.app2.databinding.ActivityMainBinding
 import com.yoochangwonspro.app2.dto.BestSellerDto
 import com.yoochangwonspro.app2.model.Book
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
     private lateinit var adapter: BookAdapter
 
+    private lateinit var historyAdapter: HistoryAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -44,11 +47,15 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
     private fun initAdapter() {
         adapter = BookAdapter()
+        historyAdapter = HistoryAdapter()
     }
 
     private fun initViews() {
         binding.bookRecyclerView.adapter = adapter
         binding.bookRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        binding.historyRecyclerView.adapter = historyAdapter
+        binding.historyRecyclerView.layoutManager = LinearLayoutManager(this)
 
         binding.searchButton.setOnClickListener {
             launch(coroutineContext) {
@@ -58,6 +65,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
         binding.searchKeywordEditText.setOnClickListener {
             binding.homeButton.isGone = true
+            binding.historyRecyclerView.isGone = false
         }
     }
 
