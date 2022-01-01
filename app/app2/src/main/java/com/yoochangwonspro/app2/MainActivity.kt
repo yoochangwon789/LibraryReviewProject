@@ -12,6 +12,7 @@ import com.yoochangwonspro.app2.database.DatabaseProvider
 import com.yoochangwonspro.app2.databinding.ActivityMainBinding
 import com.yoochangwonspro.app2.dto.BestSellerDto
 import com.yoochangwonspro.app2.model.Book
+import com.yoochangwonspro.app2.model.SearchHistory
 import com.yoochangwonspro.app2.response.MyKey
 import com.yoochangwonspro.app2.utillity.RetrofitUtil
 import kotlinx.coroutines.*
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         binding.searchButton.setOnClickListener {
             launch(coroutineContext) {
                 loadSearchBook()
+                insertSearchHistory(binding.searchKeywordEditText.text.toString())
             }
         }
 
@@ -112,6 +114,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                 }
             }
         }
+    }
+
+    private suspend fun insertSearchHistory(historyName: String) = withContext(Dispatchers.IO) {
+        databaseProvider.insertHistory(SearchHistory(null, historyName))
     }
 
     private fun detailClickListener(book: Book) {
