@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         binding.searchKeywordEditText.setOnClickListener {
             binding.homeButton.isGone = true
             binding.historyRecyclerView.isGone = false
+            loadSearchHistory()
         }
     }
 
@@ -111,6 +112,18 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    private fun loadSearchHistory() {
+        launch(coroutineContext) {
+            withContext(Dispatchers.IO) {
+                val historyList = databaseProvider.getAll()
+
+                withContext(Dispatchers.Main) {
+                    historyAdapter.setData(historyList)
                 }
             }
         }
