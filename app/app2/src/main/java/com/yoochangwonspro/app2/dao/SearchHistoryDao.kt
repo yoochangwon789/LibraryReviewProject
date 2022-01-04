@@ -14,6 +14,6 @@ interface SearchHistoryDao {
     @Insert
     suspend fun insertHistory(searchHistory: SearchHistory)
 
-    @Query("SELECT * FROM SearchHistory WHERE history_name == :historyName")
+    @Query( "DELETE FROM SearchHistory WHERE history_name == :historyName")
     suspend fun deleteHistory(historyName: String)
 }
