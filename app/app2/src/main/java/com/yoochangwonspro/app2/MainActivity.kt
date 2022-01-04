@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yoochangwonspro.app2.adpater.BookAdapter
 import com.yoochangwonspro.app2.adpater.HistoryAdapter
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
         binding.searchKeywordEditText.setOnClickListener {
             binding.homeButton.isGone = true
-            binding.historyRecyclerView.isGone = false
+            binding.historyRecyclerView.isVisible = false
             loadSearchHistory()
         }
     }
